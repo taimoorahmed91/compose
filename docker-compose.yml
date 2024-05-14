@@ -11,13 +11,15 @@ services:
       - database_data:/var/lib/mysql
 
   miseweb:
-    image: taimoora91/miseweb:0.5
+    image: taimoora91/miseweb:0.6  # Use the custom image with Docker CLI
     container_name: miseweb
     networks:
       udn_bridge:
         ipv4_address: 10.10.10.3
     ports:
       - "8443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Bind Docker socket
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
