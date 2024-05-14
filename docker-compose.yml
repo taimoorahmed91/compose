@@ -32,6 +32,13 @@ services:
     ports:
       - "9443:80"
 
+  misepy:
+    image: taimoora91/misepy:0.1
+    container_name: misepy
+    networks:
+      udn_bridge:
+        ipv4_address: 10.10.10.5
+
 networks:
   udn_bridge:
     driver: bridge
@@ -41,4 +48,3 @@ networks:
 
 volumes:
   database_data:
-
