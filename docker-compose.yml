@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  database:
+    image: taimoora91/misedb:0.8
+    container_name: database
+    networks:
+      udn_bridge:
+        ipv4_address: 10.10.10.2
+    volumes:
+      - database_data:/var/lib/mysql
+
+  miseweb:
+    image: taimoora91/miseweb:0.1
+    container_name: miseweb
+    networks:
+      udn_bridge:
+        ipv4_address: 10.10.10.3
+    ports:
+      - "8443:443"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:  # Setting environment variables for phpMyAdmin
+      - PMA_HOST=database
+      - PMA_USER=root
+      - PMA_PASSWORD=C1sc0123@
+    networks:
+      udn_bridge:
+        ipv4_address: 10.10.10.4
+    ports:
+      - "9443:80"
+
+networks:
+  udn_bridge:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.10.0/24
+
+volumes:
+  database_data:
+
