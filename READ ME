@@ -1,0 +1,3 @@
+Copy the script as install_and_run.sh
+chmod +x install_and_run.sh
+sudo ./install_and_run.sh
