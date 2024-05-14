@@ -15,8 +15,11 @@ sudo chmod +x /usr/local/bin/docker-compose
 # Start Docker service
 sudo systemctl start docker
 
-# Navigate to the directory containing docker-compose.yml
-cd "$(dirname "$0")"
+# Clone the GitHub repository
+git clone https://github.com/taimoorahmed91/compose.git
+
+# Navigate to the cloned repository directory
+cd compose
 
 # Run Docker Compose
 sudo docker-compose up -d
