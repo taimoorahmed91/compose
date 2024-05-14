@@ -11,7 +11,7 @@ services:
       - database_data:/var/lib/mysql
 
   miseweb:
-    image: taimoora91/miseweb:0.3
+    image: taimoora91/miseweb:0.4
     container_name: miseweb
     networks:
       udn_bridge:
