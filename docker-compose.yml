@@ -11,7 +11,7 @@ services:
       - database_data:/var/lib/mysql
 
   miseweb:
-    image: taimoora91/miseweb:0.6  # Use the custom image with Docker CLI
+    image: taimoora91/miseweb:0.7  # Use the custom image with Docker CLI
     container_name: miseweb
     networks:
       udn_bridge:
