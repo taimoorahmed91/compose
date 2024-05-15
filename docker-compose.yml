@@ -20,6 +20,7 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock  # Bind Docker socket
+      - shared_data:/var/www/html/mise/v0.1  # Add shared volume
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -40,6 +41,8 @@ services:
     networks:
       udn_bridge:
         ipv4_address: 10.10.10.5
+    volumes:
+      - shared_data:/var/www/html/mise/v0.1  # Add shared volume
 
 networks:
   udn_bridge:
@@ -50,3 +53,4 @@ networks:
 
 volumes:
   database_data:
+  shared_data:
