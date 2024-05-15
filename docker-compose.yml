@@ -21,6 +21,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock  # Bind Docker socket
       - shared_data:/var/www/html/mise/v0.1  # Add shared volume
+      - landscape_data:/root/ise-landscape/mise  # Add second shared volume
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -43,6 +44,7 @@ services:
         ipv4_address: 10.10.10.5
     volumes:
       - shared_data:/var/www/html/mise/v0.1  # Add shared volume
+      - landscape_data:/root/ise-landscape/mise  # Add second shared volume
 
 networks:
   udn_bridge:
@@ -54,3 +56,4 @@ networks:
 volumes:
   database_data:
   shared_data:
+  landscape_data:
