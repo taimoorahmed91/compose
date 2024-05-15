@@ -35,7 +35,7 @@ services:
       - "9443:80"
 
   misepy:
-    image: taimoora91/misepy:0.2
+    image: taimoora91/misepy:0.3
     container_name: misepy
     networks:
       udn_bridge:
