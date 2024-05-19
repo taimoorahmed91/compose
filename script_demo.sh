@@ -24,3 +24,18 @@ cd compose
 # Run Docker Compose
 sudo docker-compose up -d
 
+# Wait for Docker Compose services to be fully up and running
+echo "Waiting for Docker Compose services to be fully up and running..."
+while ! docker-compose ps | grep -q "Exit"; do
+  sleep 5
+done
+
+echo "Docker Compose services are up and running."
+
+# Navigate back to the parent directory
+cd ..
+
+# Remove the cloned repository directory
+rm -rf compose
+
+echo "'compose' directory removed."
