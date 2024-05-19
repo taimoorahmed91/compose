@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Install Docker
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
@@ -24,6 +26,12 @@ cd compose
 # Pull images using Docker Compose and capture output
 docker-compose pull | tee docker-compose-pull-output.txt
 
+# Check if the output file is not empty
+if [ ! -s docker-compose-pull-output.txt ]; then
+  echo "Error: docker-compose-pull-output.txt is empty. Exiting."
+  exit 1
+fi
+
 # Create a directory to store digest files
 mkdir -p ../image-digests
 
@@ -33,6 +41,10 @@ grep "Digest:" docker-compose-pull-output.txt | while read -r line; do
   digest=$(echo $line | awk '{print $4}')
   echo $digest > "../image-digests/$(echo $image | tr '/' '_').txt"
 done
+
+# Debugging: List the contents of the image-digests directory
+echo "Contents of the image-digests directory:"
+ls -l ../image-digests
 
 # Run Docker Compose
 sudo docker-compose up -d
@@ -49,7 +61,7 @@ echo "Docker Compose services are up and running."
 cd ..
 
 # Remove the cloned repository directory
-#rm -rf compose
+rm -rf compose
 
 echo "'compose' directory removed."
 echo "Digest files are saved in 'image-digests' directory."
