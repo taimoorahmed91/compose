@@ -35,6 +35,7 @@ echo "Docker Compose services are up and running."
 
 # Navigate back to the parent directory
 cd ..
+cd ..
 
 # Remove the cloned repository directory
 rm -rf compose
