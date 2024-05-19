@@ -47,4 +47,4 @@ rm -rf compose
 # Remove the docker-compose-pull-output.txt file
 rm -f compose/docker-compose-pull-output.txt
 
-echo "Folder cleaned up"
+echo "Folder cleaned up, Enjoy using MISE "
