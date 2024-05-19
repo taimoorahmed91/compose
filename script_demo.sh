@@ -21,9 +21,18 @@ git clone https://github.com/taimoorahmed91/compose.git
 # Navigate to the cloned repository directory
 cd compose
 
+# Pull images using Docker Compose and capture output
+docker-compose pull | tee docker-compose-pull-output.txt
+
+# Extract digests and save them to files named after each image (with tags)
+grep "Digest:" docker-compose-pull-output.txt | while read -r line; do
+  image=$(echo $line | awk '{print $2}' | sed 's/sha256:.*//')
+  digest=$(echo $line | awk '{print $4}')
+  echo $digest > "$(echo $image | tr '/' '_').txt"
+done
+
 # Run Docker Compose
 sudo docker-compose up -d
-
 
 # Wait for Docker Compose services to be fully up and running
 echo "Waiting for Docker Compose services to be fully up and running..."
@@ -34,7 +43,6 @@ done
 echo "Docker Compose services are up and running."
 
 # Navigate back to the parent directory
-cd ..
 cd ..
 
 # Remove the cloned repository directory
