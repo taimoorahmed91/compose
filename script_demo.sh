@@ -24,11 +24,14 @@ cd compose
 # Pull images using Docker Compose and capture output
 docker-compose pull | tee docker-compose-pull-output.txt
 
+# Create a directory to store digest files
+mkdir -p ../image-digests
+
 # Extract digests and save them to files named after each image (with tags)
 grep "Digest:" docker-compose-pull-output.txt | while read -r line; do
   image=$(echo $line | awk '{print $2}' | sed 's/sha256:.*//')
   digest=$(echo $line | awk '{print $4}')
-  echo $digest > "$(echo $image | tr '/' '_').txt"
+  echo $digest > "../image-digests/$(echo $image | tr '/' '_').txt"
 done
 
 # Run Docker Compose
@@ -49,3 +52,4 @@ cd ..
 rm -rf compose
 
 echo "'compose' directory removed."
+echo "Digest files are saved in 'image-digests' directory."
