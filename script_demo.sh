@@ -49,7 +49,7 @@ echo "Docker Compose services are up and running."
 cd ..
 
 # Remove the cloned repository directory
-rm -rf compose
+#rm -rf compose
 
 echo "'compose' directory removed."
 echo "Digest files are saved in 'image-digests' directory."
