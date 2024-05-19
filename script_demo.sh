@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Install Docker
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
@@ -21,9 +23,11 @@ git clone https://github.com/taimoorahmed91/compose.git
 # Navigate to the cloned repository directory
 cd compose
 
+# Pull images using Docker Compose and capture output
+docker-compose pull | tee docker-compose-pull-output.txt
+
 # Run Docker Compose
 sudo docker-compose up -d
-
 
 # Wait for Docker Compose services to be fully up and running
 echo "Waiting for Docker Compose services to be fully up and running..."
@@ -40,4 +44,7 @@ cd ..
 # Remove the cloned repository directory
 rm -rf compose
 
-echo "'compose' directory removed."
+# Remove the docker-compose-pull-output.txt file
+rm -f compose/docker-compose-pull-output.txt
+
+echo "Folder cleaned up"
