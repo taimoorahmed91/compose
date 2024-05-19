@@ -18,6 +18,7 @@ services:
         ipv4_address: 10.10.10.3
     ports:
       - "443:443"
+      - "80:80"  # Expose port 80
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock  # Bind Docker socket
       - shared_data:/var/www/html/mise/v0.1  # Add shared volume
