@@ -24,9 +24,10 @@ cd compose
 # Run Docker Compose
 sudo docker-compose up -d
 
+
 # Wait for Docker Compose services to be fully up and running
 echo "Waiting for Docker Compose services to be fully up and running..."
-while ! docker-compose ps | grep -q "Exit"; do
+while ! docker-compose ps | grep -q "Up"; do
   sleep 5
 done
 
